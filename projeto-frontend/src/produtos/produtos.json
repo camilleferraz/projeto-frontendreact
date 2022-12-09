@@ -1,0 +1,39 @@
+[
+    {
+        "id": "001",
+        "name": "Quartzo",
+        "category": "Pedras Preciosas",
+        "color":"rosa",
+        "price":600,
+        "img":"img001"
+        
+      },
+
+    {
+        "id": "002",
+        "name": "Diamante",
+        "category": "Pedras Preciosas",
+        "color":"Transparente",
+        "price":1000,
+        "img":"img002"
+    },
+    
+    {
+        "id": "003",
+        "name": "Esmeralda",
+        "category": "Pedras Preciosas",
+        "color":"Verde",
+        "price":800,
+        "img":"img003"
+        
+    },
+
+    {
+        "id": "004",
+        "name": "Ametista",
+        "category": "Pedras Preciosas",
+        "color":"Roxo",
+        "price":400,
+        "img":"img004"
+    }
+]
