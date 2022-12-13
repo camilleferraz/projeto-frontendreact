@@ -1,9 +1,11 @@
 import { Home } from "./components/Home/Home";
 import styled, { createGlobalStyle } from "styled-components";
-import produtos from "./produtos/produtos.json"
-import { ProductsCards } from "./components/Home/ProductsCards/ProductsCards";
+import {produtos} from "./produtos/produtos"
+import { ProductsCards } from "./components/CardsProducts/ProductsCards";
 import { useState } from "react";
-import {FilterBaar} from "./components/Home/FilterBaar/FilterBaar"
+import {FilterBaar} from "./components/FilterBaar/FilterBaar"
+import { MainPage } from "./Pages/MainPage/MainPage";
+import{CartPage} from "./Pages/CartPage/CartPage"
 
 const GlobalStyle = createGlobalStyle`
   *{
@@ -17,54 +19,31 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 
-const CardsContainer = styled.div`
-  display: flex;
-  position: absolute;
-  right: 10vw;
-`;
-
 function App() {
 
-  
+const [activeScreen, setActiveScreen] = useState("MainPage")
 
-  const [buscaNome, setBuscaNome] = useState("")
-  const [ordenaValor, setOrdenaValor] = useState("")
-  console.log(ordenaValor)
+const goToMainPage = () => setActiveScreen("MainPage")
+const goToCartPage = () => setActiveScreen("CartPage")
 
-  return (
-    <>
-   <Home/>
-   <GlobalStyle/>
-    <FilterBaar
-    buscaNome={buscaNome}
-    setBuscaNome={setBuscaNome}
-    
-    ordenaValor={ordenaValor}
-    setOrdenaValor={setOrdenaValor}
-    />
-   <CardsContainer>
-    {produtos
-    .sort((a,b)=>{
-      if(ordenaValor==="crescente"){
-        return a.price-b.price
-      } if(ordenaValor==="decrescente"){
-        return b.price-a.price
-      }
-    })
-    .filter((produtos)=>{
-     return produtos.name.toLowerCase().includes(buscaNome.toLowerCase())
-    })
-    .map((produtos) => {
-      return(
-        <ProductsCards
-          key={produtos.id}
-          produtos={produtos}
-        />
-      )
-    })}
-   </CardsContainer>
-   </>
-  );
+const renderScreen=()=>{
+  switch(activeScreen){
+    case "MainPage":
+      return <MainPage
+      goToCartPage={goToCartPage}
+      />
+    case "CartPage":
+      return <CartPage
+      goToMainPage={goToMainPage}
+      />
+    default:
+      return <div>Page not found</div>
+  }
+}
+
+
+
+  return (renderScreen());
 }
 
 export default App;
