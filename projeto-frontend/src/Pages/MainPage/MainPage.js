@@ -10,13 +10,14 @@ import cartButton from "../../assets/cartButton.png"
 
 const CardsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   position: absolute;
   right: 10vw;
 `;
 
 export const MainPage = (props)=>{
 
-    const{goToCartPage} = props
+    const{goToCartPage, addToCart} = props
 
     const [buscaNome, setBuscaNome] = useState("")
     const [ordenaValor, setOrdenaValor] = useState("")
@@ -59,8 +60,10 @@ export const MainPage = (props)=>{
     .map((produtos) => {
       return(
         <ProductsCards
+        addToCart={addToCart}
           key={produtos.id}
           produtos={produtos}
+          isOnMainPage={true}
         />
       )
     })}

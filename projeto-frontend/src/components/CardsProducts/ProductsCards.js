@@ -13,19 +13,23 @@ import cart from "../../assets/cart-img.png";
 
 export const ProductsCards = (props) => {
 
-
+const {addToCart} = props
   console.log(props.produtos);
 
   return (
     <Container>
+      <h3>{props.isOnMainPage&&"Sou da tela de produtos"}
+      {props.isOnCartPage && "Sou da tela de carrinho"}</h3>
       <Imagem src={props.produtos.img}/>
 
       <NomeProduto>{props.produtos.name}</NomeProduto>
       <Preco>{`R$${props.produtos.price}`}</Preco>
-      <CartButton>
+      {props.isOnMainPage&&<CartButton onClick={()=>addToCart(props.produtos)}>
         <CartImg src={cart} alt="" />
         Comprar
-      </CartButton>
+      </CartButton>}
+
+      {props.isOnCartPage&&<span>{props.produtos.quantity}</span>}      
     </Container>
   );
 };
