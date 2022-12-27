@@ -28,15 +28,23 @@ const [cart, setCart]=useState([])
 const goToMainPage = () => setActiveScreen("MainPage")
 const goToCartPage = () => setActiveScreen("CartPage")
 
+const [buscaNome, setBuscaNome] = useState("")
+const [ordenaValor, setOrdenaValor] = useState("")
+
+
 const renderScreen=()=>{
   switch(activeScreen){
     case "MainPage":
       return <MainPage
       addToCart={addToCart}
       goToCartPage={goToCartPage}
+      buscaNome={buscaNome}
+      ordenaValor={ordenaValor}
       />
     case "CartPage":
       return <CartPage
+      increaseQuantityInCart={increaseQuantityInCart}
+      decreaseQuantityInCart={decreaseQuantityInCart}
       cart={cart}
       goToMainPage={goToMainPage}
       />
@@ -61,7 +69,43 @@ const addToCart = (productToAdd)=>{
 
 }
 
-  return (renderScreen());
+const increaseQuantityInCart = (productToIncrease)=>{
+  const newCart =[...cart]
+
+  const productFound = newCart.find((productInCart)=>productInCart.id===productToIncrease.id)
+
+productFound.quantity++
+
+setCart(newCart)
+}
+
+const decreaseQuantityInCart = (productToDecrease)=>{
+  const newCart =[...cart]
+
+  const productFound = newCart.find((productInCart)=>productInCart.id===productToDecrease.id)
+
+productFound.quantity--
+
+setCart(newCart)
+}
+
+  return (
+    <>
+<Home/>
+<FilterBaar
+    
+    buscaNome={buscaNome}
+    setBuscaNome={setBuscaNome}
+    
+    ordenaValor={ordenaValor}
+    setOrdenaValor={setOrdenaValor}
+    
+    />
+    {renderScreen()}
+    
+    </>
+    
+  );
 }
 
 export default App;

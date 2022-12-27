@@ -11,7 +11,13 @@ const CardsContainer = styled.div`
 
 export const CartPage = (props)=>{
 
-    const{goToMainPage, cart, addToCart} = props
+    const{
+      goToMainPage, 
+      cart, 
+      addToCart,
+      increaseQuantityInCart,
+      decreaseQuantityInCart
+    } = props
     const total = cart.reduce(
        ( (acc, product)=>(product.price*product.quantity)+acc),0)
 
@@ -27,6 +33,8 @@ export const CartPage = (props)=>{
           key={produtos.id}
           produtos={produtos}
           isOnCartPage={true}
+          increaseQuantityInCart={increaseQuantityInCart}
+          decreaseQuantityInCart={decreaseQuantityInCart}
         />
       )
     })}

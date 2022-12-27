@@ -11,36 +11,18 @@ import cartButton from "../../assets/cartButton.png"
 const CardsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
-  right: 10vw;
 `;
 
 export const MainPage = (props)=>{
 
-    const{goToCartPage, addToCart} = props
+    const{goToCartPage, addToCart,buscaNome,ordenaValor} = props
 
-    const [buscaNome, setBuscaNome] = useState("")
-    const [ordenaValor, setOrdenaValor] = useState("")
-
-
-    console.log(ordenaValor)
-
-
+    
 
 
     return(
     <>
-    <Home/>
-    <FilterBaar>
-    buscaNome={buscaNome}
-    setBuscaNome={setBuscaNome}
     
-    ordenaValor={ordenaValor}
-    setOrdenaValor={setOrdenaValor}
-    
-    </FilterBaar>
-
-   
     <button onClick={goToCartPage}>
     <img src={cartButton}/>
     </button>

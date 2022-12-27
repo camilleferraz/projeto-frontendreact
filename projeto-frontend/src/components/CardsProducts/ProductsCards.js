@@ -11,6 +11,7 @@ import {
 import cart from "../../assets/cart-img.png";
 
 
+
 export const ProductsCards = (props) => {
 
 const {addToCart} = props
@@ -29,7 +30,31 @@ const {addToCart} = props
         Comprar
       </CartButton>}
 
-      {props.isOnCartPage&&<span>{props.produtos.quantity}</span>}      
+      {props.isOnCartPage&&<span>{props.produtos.quantity}</span>} 
+      
+      {
+      props.isOnCartPage && props.produtos.quantity>1 
+      
+      &&<button 
+      
+      onClick={()=> props.decreaseQuantityInCart(props.produtos)}
+      
+      >
+        -
+      </button>
+      }  
+
+      
+      {
+      props.isOnCartPage 
+      
+      &&<button 
+      
+      onClick={()=> props.increaseQuantityInCart(props.produtos)}
+      
+      >
+        +
+      </button>}   
     </Container>
   );
 };
